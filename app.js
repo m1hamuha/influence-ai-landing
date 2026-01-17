@@ -104,7 +104,7 @@
       timer_unit_seconds: "с",
       timer_unit_milliseconds: "мс",
       mentor_line: "Ментор Иван объясняет систему, которую ты повторяешь для результата.",
-      cta_primary: "купить за 19$ вместо 120$",
+      cta_primary: "купить за 19$ вместо <span style=\"color: #FF3B30; text-decoration: line-through;\">120$</span>",
       chip_1: "Без рекламы",
       chip_2: "Без лица",
       chip_3: "За 7 дней",
@@ -257,7 +257,7 @@
       timer_unit_seconds: "сек",
       timer_unit_milliseconds: "мс",
       mentor_line: "Ментор Іван пояснює систему, яку ти повторюєш для результату.",
-      cta_primary: "купити за 19$ замість 120$",
+      cta_primary: "купити за 19$ замість <span style=\"color: #FF3B30; text-decoration: line-through;\">120$</span>",
       chip_1: "Без реклами",
       chip_2: "Без обличчя",
       chip_3: "За 7 днів",
@@ -401,14 +401,8 @@
   let currentLang = "ru";
 
   function initStyleOverrides() {
-    const gradTitle = document.querySelector('[data-i18n="hero_title_grad"]');
-    if (gradTitle) {
-      gradTitle.classList.remove("grad");
-      gradTitle.style.background = "none";
-      gradTitle.style.webkitTextFillColor = "initial";
-      gradTitle.style.color = "#FFFFFF";
-    }
-
+    // Keep gradient for "Ai инфлюенсер" text (purple-to-pink)
+    // Only hide the empty title
     const emptyTitle = document.querySelector('[data-i18n="hero_title_1"]');
     if (emptyTitle) emptyTitle.style.display = "none";
   }
