@@ -1202,17 +1202,7 @@ ul li.green-text {
   color: var(--accentG);
 }
 
-/* Hide specific slides in carousels */
-.slide img[src="day_2.png"],
-.slide img[src="day_6.png"] {
-  display: none;
-}
 
-/* Hide the slide container if image is hidden */
-  .slide:has(img[src="day_2.png"]),
-  .slide:has(img[src="day_6.png"]) {
-    display: none;
-  }
 
 /* ДЛЯ КОГО ЭТО section - оптимизировано для мобильных и iPad */
 .for-whom-grid {
