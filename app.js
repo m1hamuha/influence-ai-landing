@@ -551,3 +551,56 @@
     if (e.key === 'Escape') hide();
   });
 })();
+
+// Ensure videos in "для кого это" section autoplay and loop
+(function initForWhomVideos() {
+  const videos = document.querySelectorAll('.for-whom-video');
+  if (!videos.length) return;
+
+  // Try to play each video
+  function playVideo(video) {
+    if (video.paused) {
+      video.play().catch(e => {
+        console.log('Video autoplay blocked:', e);
+        // If autoplay is blocked, try again when user interacts with page
+        const playOnInteraction = () => {
+          video.play().catch(() => {});
+          document.removeEventListener('click', playOnInteraction);
+          document.removeEventListener('scroll', playOnInteraction);
+          document.removeEventListener('touchstart', playOnInteraction);
+        };
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('scroll', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+      });
+    }
+  }
+
+  // Play videos when they become visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const video = entry.target;
+        playVideo(video);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  videos.forEach(video => {
+    // Set loop attribute explicitly
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    
+    // Try to play immediately
+    playVideo(video);
+    
+    // Observe for visibility
+    observer.observe(video);
+  });
+
+  // Also try to play all videos on page load
+  window.addEventListener('load', () => {
+    videos.forEach(playVideo);
+  });
+})();
