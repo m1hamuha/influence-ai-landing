@@ -525,59 +525,6 @@
   render();
 })();
 
-// modal logic (privacy)
-(function initModal() {
-  const btn = document.querySelector("[data-modal-open]");
-  const close = document.querySelector("[data-modal-close]");
-  const backdrop = document.querySelector(".modalBackdrop");
-
-  if (!btn || !backdrop) return;
-
-  const toggle = () => backdrop.classList.toggle("isOpen");
-
-  btn.addEventListener("click", toggle);
-  close?.addEventListener("click", toggle);
-
-  backdrop.addEventListener("click", (e) => {
-    if (e.target === backdrop) toggle();
-  });
-})();
-
-// Privacy modal (open/close) - immediate execution
-(function initPrivacyModal() {
-  console.log('initPrivacyModal running');
-  const btn = document.getElementById('privacyBtn');
-  const modal = document.getElementById('privacyModal');
-  const close = document.getElementById('privacyClose');
-
-  if (!btn || !modal) {
-    console.log('Button or modal not found');
-    return;
-  }
-
-  const open = () => {
-    console.log('Privacy modal opening');
-    modal.classList.add('isOpen');
-    modal.setAttribute('aria-hidden', 'false');
-  };
-
-  const hide = () => {
-    modal.classList.remove('isOpen');
-    modal.setAttribute('aria-hidden', 'true');
-  };
-
-  btn.addEventListener('click', open);
-  close?.addEventListener('click', hide);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) hide();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') hide();
-  });
-})();
-
 // Ensure videos in "для кого это" section autoplay and loop
 (function initForWhomVideos() {
   const videos = document.querySelectorAll('.for-whom-video');
@@ -629,4 +576,21 @@
   window.addEventListener('load', () => {
     videos.forEach(playVideo);
   });
+})();
+
+// Hide header on privacy policy, offer, and consent pages
+(function hideHeaderOnLegalPages() {
+  const topbar = document.querySelector('.topbar');
+  if (!topbar) return;
+
+  const currentPath = window.location.pathname.toLowerCase();
+  
+  // Check if current page is privacy policy, offer, or consent
+  const isLegalPage = currentPath.includes('privacy.html') || 
+                      currentPath.includes('offer.html') || 
+                      currentPath.includes('consent.html');
+
+  if (isLegalPage) {
+    topbar.style.display = 'none';
+  }
 })();
