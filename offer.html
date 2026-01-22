@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Договор публичной оферты • AI Influencers School</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Скрываем хедер только на legal-страницах */
+    .topbar { display: none !important; }
+  </style>
 </head>
 
 <body>
@@ -54,11 +58,39 @@
               </span>
             </div>
           </div>
-          <a href="https://secure.wayforpay.com/payment/httpsinfluenceaiwork" class="btn btn--soft" data-i18n="top_buy">Купить</a>
+          <a href="https://secure.wayforpay.com/payment/httpsinfluenceai" class="btn btn--soft" data-i18n="top_buy">Купить</a>
         </div>
       </div>
     </div>
   </nav>
+
+  <a href="index.html" class="btn btn--ghost legal-back">Вернуться назад</a>
+
+  <style>
+    .legal-back{
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 999;
+      display: inline-flex;
+      margin: 0;
+      padding: 8px 16px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .legal-back:hover {
+      background: rgba(0, 0, 0, 0.75);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 1;
+    }
+  </style>
 
   <!-- main content -->
   <section class="section">
