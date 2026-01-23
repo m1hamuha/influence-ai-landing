@@ -72,7 +72,12 @@
     const prev = carousel.querySelector("[data-carousel-prev]");
     const next = carousel.querySelector("[data-carousel-next]");
 
-    const step = () => Math.min(track.clientWidth * 0.8, 420);
+    const getSlideWidth = () => {
+      const firstSlide = track.querySelector('.slide');
+      return firstSlide ? firstSlide.offsetWidth : 0;
+    };
+
+    const step = () => getSlideWidth() || 420;
 
     prev?.addEventListener("click", () => {
       track.scrollBy({ left: -step(), behavior: "smooth" });
